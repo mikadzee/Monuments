@@ -36,7 +36,7 @@
             </p>
           </div>
         </div>
-        <div class="tab" :style="{'height': thisMonument.tab3.show ? 'auto' : '40px'}">
+        <div class="tab" :style="{'height': thisMonument.tab3.show ? 'auto' : '50px'}">
           <div class="header-tab">
             <h2 style=" width: 200px;">{{ thisMonument.tab3.titleWhatTitle }}</h2>
   
