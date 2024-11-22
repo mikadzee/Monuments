@@ -5,6 +5,7 @@
       :pagination="true"
       :navigation="true"
       :grabCursor="true"
+      
       @slideChange="onSlideChange"
       class="slider"
 

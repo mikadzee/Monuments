@@ -36,9 +36,9 @@
             </p>
           </div>
         </div>
-        <div class="tab" :style="{'height': thisMonument.tab3.show ? 'auto' : '50px'}">
+        <div class="tab" :style="{'height': thisMonument.tab3.show ? 'auto' : '40px'}">
           <div class="header-tab">
-            <h2 style=" width: 200px;">{{ thisMonument.tab3.titleWhatTitle }}</h2>
+            <h2 style=" width: 200px; padding-bottom: 10px;">{{ thisMonument.tab3.titleWhatTitle }}</h2>
   
             <div class="arrow-container" @click="thisMonument.tab3.show = !thisMonument.tab3.show" :style="{'transform': thisMonument.tab3.show ? 'rotate(180deg)' : 'rotate(0deg)'}">
               <div class="arrow"></div>
@@ -63,16 +63,23 @@
       position: relative;
 
       & .title {
-        padding: 10px 20px;
+        padding: 10px 0px;
         position: absolute;
         top: -65px;
         text-align: center;
         z-index: 1;
-        width: 90%;
+        width: 400px;
         height: 50px;
         font-size: 12px;
         border-radius: 30px 30px 0px 0px;
         background:rgba(255, 255, 255, 0.603);
+        
+        & > h2 {
+          margin-top: 10px;
+          margin-left: 20px;
+          text-align: left;
+          width: 350px;
+        }
       }
 
       & .tabs {
