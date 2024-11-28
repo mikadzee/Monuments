@@ -5,10 +5,11 @@
       :pagination="true"
       :navigation="true"
       :grabCursor="true"
-      
+      ref="swiperRef"
+      :initial-slide="initialSlide"
       @slideChange="onSlideChange"
       class="slider"
-
+      @swiper="onSwiperInit"
     >
         <SwiperSlide v-for="(slide, index) in slides" :key="index" class="slide">
           <img :src="slide.url" alt="Slide" />
@@ -29,7 +30,15 @@ import { useActiveSlideStore } from '../stores/pinia'
 interface Slide {
   url: string;
 }
+const route = useRoute();
+const router = useRouter();
 const sliderStore = useActiveSlideStore();
+const swiperRef = ref<any>(null);
+const initialized = ref<boolean>(false);
+const initialSlide = computed(() => {
+  const slideId = +route.fullPath.split("/")[1];
+  return slideId > slides.value.length ? 0 : slideId; 
+});
 const slides = ref<Slide[]>([
   { url:  image1},
   { url:  image2},
@@ -37,12 +46,31 @@ const slides = ref<Slide[]>([
   { url:  image4},
   { url:  image5},
 ]);
+const goSlideUrl = () => {
+  const slideId = +route.fullPath.split("/")[1];
+  console.log(slideId);
+  
+  if(slideId <= slides.value.length) {
+  }
+}
 const onSlideChange = (swiper: any) => {
   const currentIndex = swiper.realIndex
   console.log(currentIndex);
-  
   sliderStore.setActiveSlide(currentIndex)
+  router.replace({ path: `/${currentIndex}` }); 
 }
+
+const onSwiperInit = (swiper: any) => {
+  swiperRef.value = swiper;
+  initialized.value = true;
+  console.log("efefefe ", swiper);
+  
+  // goSlideUrl();
+};
+
+onMounted(() => {
+  goSlideUrl();
+})
 </script>
 
 <style lang="less" scoped>

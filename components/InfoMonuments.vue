@@ -5,11 +5,11 @@
         <h2>{{ thisMonument.title }}</h2>
       </div>
       <div class="tabs">
-        <div class="tab" :style="{'height': thisMonument.tab1.show ? 'auto' : '30px'}">
+        <div class="tab" @click="thisMonument.tab1.show = !thisMonument.tab1.show" :class="{ expanded: thisMonument.tab1.show }">
           <div class="header-tab">
             <h2>История создания</h2>
   
-            <div class="arrow-container" @click="thisMonument.tab1.show = !thisMonument.tab1.show" :style="{'transform': thisMonument.tab1.show ? 'rotate(180deg)' : 'rotate(0deg)'}">
+            <div class="arrow-container"  :style="{'transform': thisMonument.tab1.show ? 'rotate(180deg)' : 'rotate(0deg)'}">
               <div class="arrow"></div>
             </div>
           </div>
@@ -21,11 +21,11 @@
           </div>
         </div>
 
-        <div class="tab" :style="{'height': thisMonument.tab2.show ? 'auto' : '30px'}">
+        <div class="tab" @click="thisMonument.tab2.show = !thisMonument.tab2.show" :class="{ expanded: thisMonument.tab2.show }" >
           <div class="header-tab">
             <h2>Значение</h2>
   
-            <div class="arrow-container" @click="thisMonument.tab2.show = !thisMonument.tab2.show" :style="{'transform': thisMonument.tab2.show ? 'rotate(180deg)' : 'rotate(0deg)'}">
+            <div class="arrow-container"  :style="{'transform': thisMonument.tab2.show ? 'rotate(180deg)' : 'rotate(0deg)'}">
               <div class="arrow"></div>
             </div>
           </div>
@@ -36,11 +36,11 @@
             </p>
           </div>
         </div>
-        <div class="tab" :style="{'height': thisMonument.tab3.show ? 'auto' : '40px'}">
+        <div class="tab" @click="thisMonument.tab3.show = !thisMonument.tab3.show" :class="{ expanded: thisMonument.tab3.show }" >
           <div class="header-tab">
-            <h2 style=" width: 200px; padding-bottom: 10px;">{{ thisMonument.tab3.titleWhatTitle }}</h2>
+            <h2 style=" width: 330px;">{{ thisMonument.tab3.titleWhatTitle }}</h2>
   
-            <div class="arrow-container" @click="thisMonument.tab3.show = !thisMonument.tab3.show" :style="{'transform': thisMonument.tab3.show ? 'rotate(180deg)' : 'rotate(0deg)'}">
+            <div class="arrow-container"  :style="{'transform': thisMonument.tab3.show ? 'rotate(180deg)' : 'rotate(0deg)'}">
               <div class="arrow"></div>
             </div>
           </div>
@@ -64,18 +64,18 @@
 
       & .title {
         padding: 10px 0px;
+        width: 100%;
         position: absolute;
         top: -65px;
         text-align: center;
         z-index: 1;
-        width: 400px;
         height: 50px;
         font-size: 12px;
         border-radius: 30px 30px 0px 0px;
         background:rgba(255, 255, 255, 0.603);
         
         & > h2 {
-          margin-top: 10px;
+          margin-top: 3px;
           margin-left: 20px;
           text-align: left;
           width: 350px;
@@ -86,10 +86,15 @@
         background: #fff;
 
         & .tab {
-          padding: 20px 20px;
-          transition: all 0.5s;
+          padding: 20px 15px;
+          transition: all 0.6s;
+          max-height: 30px;
           overflow: hidden;
           border: 1px solid #000;
+          
+          &.expanded {
+            max-height: 400px;
+          }
           
           & .header-tab {
             display: flex;
